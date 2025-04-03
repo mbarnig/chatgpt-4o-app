@@ -36,7 +36,7 @@ Dans les deux cas les usagers ne vont pas s'identifier ou s'enregistrer et il n'
 Prière de programmer l'application de manière à pouvoir l'exécuter à partir d'un fichier "index.html" qui est à compresser dans une archive .zip ensemble avec tous les autres fichiers requis.
 ```
 Voici le résultat :
-```
+```jsx
 import React, { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
