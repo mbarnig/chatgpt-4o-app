@@ -75,16 +75,28 @@ function App() {
       </div>
 
       <div style={{
-        position: 'fixed', bottom: 0, width: '100%',
-        display: 'flex', justifyContent: 'space-between',
-        backgroundColor: '#fff', padding: '1rem'
+        position: "fixed", bottom: 0, width: "100%",
+        display: "flex", justifyContent: "space-between",
+        alignItems: "center",
+        backgroundColor: "#fff", padding: "1rem", zIndex: 10
       }}>
         <button onClick={handleValidate}>Validation</button>
-        <button onClick={handleReset}>Reset</button>
         <div>
-          <button onClick={() => setCurrent(prev => prev > 0 ? prev - 1 : prev)}>&lt;</button>
-          <button onClick={() => setCurrent(prev => prev < mockImages.length - 1 ? prev + 1 : prev)}>&gt;</button>
+          <button
+            onClick={() => setCurrent((prev) => Math.max(0, prev - 1))}
+            disabled={current === 0}
+            style={{ marginRight: "0.5rem" }}
+          >
+            &lt;
+          </button>
+          <button
+            onClick={() => setCurrent((prev) => Math.min(mockImages.length - 1, prev + 1))}
+            disabled={current === mockImages.length - 1}
+          >
+            &gt;
+          </button>
         </div>
+        <button onClick={handleReset}>Reset</button>
       </div>
     </div>
   );
