@@ -7,7 +7,7 @@ npm create vite@latest quiz-app -- --template react
 cd new-quiz
 npm install
 ```
-Ce processus génère un modèle d'application React avec un fichier [new-quiz/src/App.jsx]() que j'ai renommé App.jsx-vite.
+Ce processus génère un modèle d'application React avec un fichier [new-quiz/src/App.jsx](https://github.com/mbarnig/chatgpt-4o-app/blob/main/src/App.jsx-vite) que j'ai renommé App.jsx-vite.
 
 
 # React + Vite
