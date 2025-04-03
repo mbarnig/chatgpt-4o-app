@@ -413,4 +413,5 @@ shutil.make_archive(zip_path.replace(".zip", ""), 'zip', project_root)
 
 zip_path
 ```
-
+J'ai copié le code Python dans un fichier `quiz.py` et exécuté la commande `python3 quiz.py`. Il génère le même fichier `quiz_image_classification.zip` que celui téléchargé sur ChatGPT-4o.
+Cela signifie que ChatGPT-4o a utilisé ce fichier Python pour générer l'archive avec le contenu que j'ai copié dans la branche main de ce répositoire.
