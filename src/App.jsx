@@ -109,15 +109,15 @@ function App() {
         display: 'flex', justifyContent: 'space-between',
         backgroundColor: '#fff', padding: '1rem'
       }}>
-        <button onClick={() => setPage(\"quiz\")}>&lt;</button>
-        <button onClick={() => setPage(\"home\")}>MENU</button>
-        <button onClick={() => { setCurrent(0); handleReset(); setPage(\"quiz\"); }}>&gt;</button>
+        <button onClick={() => setPage("quiz")}>&lt;</button>
+        <button onClick={() => setPage("home")}>MENU</button>
+        <button onClick={() => { setCurrent(0); handleReset(); setPage("quiz"); }}>&gt;</button>
       </div>
     </div>
   );
 
-  return page === \"home\" ? renderHome()
-    : page === \"quiz\" ? renderQuiz()
+  return page === "home" ? renderHome()
+    : page === "quiz" ? renderQuiz()
     : renderResults();
 }
 
