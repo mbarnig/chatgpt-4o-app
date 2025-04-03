@@ -164,3 +164,51 @@ export default function App() {
     : renderResults();
 }
 ```
+La réponse de ChatGPT-4o était la suivante :
+```markdown
+Super ! Voici ce que j’ai mis en place :
+✅ Fonctionnalités incluses
+
+    Deux pages principales : "Classification" et "Consultation des Résultats".
+
+    Images mock placées dans un dossier public/ (/mock1.jpg, /mock2.jpg, /mock3.jpg) + une image de couverture (/cover.jpg).
+
+    Responsive layout : adapté pour smartphone et écran d’ordinateur.
+
+    Liste déroulante pour choisir la légende de chaque image.
+
+    Numérotation visible sur l’image, avec superposition de la légende choisie.
+
+    Navigation image par image avec flèches.
+
+    Boutons de Validation et Reset.
+
+    Consultation des Résultats avec comparaison aux réponses correctes.
+
+    Aucune identification ni cookie requis.
+
+🛠 Prochaines étapes pour toi
+
+    Remplacer les images mock par tes images finales dans le dossier public.
+
+    Personnaliser les légendes (options) et réponses correctes (correctAnswers).
+
+    Compiler et packager l’application en une archive .zip contenant :
+
+        index.html
+
+        Le dossier public/
+
+        Tous les fichiers générés par React (dist/, build/ ou selon la config)
+
+Souhaites-tu que je t’aide à :
+
+    Générer une version téléchargeable .zip ?
+
+    Créer un index.html prêt à lancer localement ?
+
+    Ajouter une animation ou un style particulier ?
+
+Tu peux aussi me montrer un exemple des images finales si tu veux peaufiner encore plus le rendu.
+````
+
