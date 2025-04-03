@@ -14,7 +14,7 @@ Layout sur Smartphone.
 
 Sur le Smartphone une page "classification" est segmentée en trois modules:
 1. en haut une entête fixe contient la liste de sélection
-2. au milieu une image après l'autre est affichée avec un boutton de défilement.
+2. au milieu une image après l'autre est affichée avec un bouton de défilement.
 Dans le coin gauche en haut l'image comporte un nombre séquentiel à deux chiffres.
 Si l'usager a sélectionné une légende dans la liste celle-ci est affichée en superposition en bas de l'image.
 3. en bas un pied de page fixe contient deux boutons :
