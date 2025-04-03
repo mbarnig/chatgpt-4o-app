@@ -36,8 +36,18 @@ Parfait, tu avances bien ! L’erreur est tout à fait normale : ces modules s
 
 Je vais te donner une version de App.jsx plus simple, sans @/components/... ni lucide-react, pour que ça fonctionne immédiatement dans Vite.
 J'ai copié le nouveau fichier dans la branche RECTIF du présent repositoire.
-Pour compiler la nouvelle version, j'ai cloné la branche RECTIF dans un nouveau dossier avec la commande `git clone -b RECTIF 
-  
+Pour compiler la nouvelle version, j'ai cloné la branche RECTIF dans un nouveau dossier avec la commande `git clone -b RECTIF https://github.com/mbarnig/chatgpt-4o-app.git`.
+Après l'exécution des commandes `npm install` et `npm run dev` l'erreur suivant a été signalée :   
+```
+Error:   Failed to scan for dependencies from entries:
+  D:/Quiz-App/quiz-rectif/chatgpt-4o-app/index.html
+
+  ✘ [ERROR] Syntax error '"'
+
+    src/App.jsx:112:40:
+      112 │         <button onClick={() => setPage(\"quiz\")}>&lt;</button>
+ ```
+ 
 
 
 # React + Vite
