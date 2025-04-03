@@ -35,7 +35,7 @@ Parfait, tu avances bien ! L’erreur est tout à fait normale : ces modules s
 ✅ Option 1 : Simplifier le code pour ne pas dépendre de ces librairies
 
 Je vais te donner une version de App.jsx plus simple, sans @/components/... ni lucide-react, pour que ça fonctionne immédiatement dans Vite.
-J'ai copié le nouveau fichier dans la branche RECTIF du présnt repositoire.
+J'ai copié le nouveau fichier dans la branche RECTIF du présent repositoire.
   
 
 
