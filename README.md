@@ -229,5 +229,188 @@ Tu peux la décompresser et l’ouvrir localement ou l’intégrer dans un proje
 
 Tu veux aussi un script build ou un package.json pour la rendre exécutable directement en local avec React ? ​
 ​```
+Le script Python ajouté était le suivant :
+```python
+import zipfile
+import os
+import shutil
 
+# Create the project directory structure
+project_root = "/mnt/data/quiz_image_classification"
+public_dir = os.path.join(project_root, "public")
+src_dir = os.path.join(project_root, "src")
+
+# Clear any existing structure
+if os.path.exists(project_root):
+    shutil.rmtree(project_root)
+
+os.makedirs(public_dir)
+os.makedirs(src_dir)
+
+# Create mock images and cover
+mock_image_paths = [
+    os.path.join(public_dir, "mock1.jpg"),
+    os.path.join(public_dir, "mock2.jpg"),
+    os.path.join(public_dir, "mock3.jpg"),
+    os.path.join(public_dir, "cover.jpg"),
+]
+
+for path in mock_image_paths:
+    with open(path, "wb") as f:
+        f.write(os.urandom(1024))  # Random content to simulate an image file
+
+# Save the React app code
+app_code = '''import React, { useState } from 'react';
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const mockImages = [
+  { src: "/mock1.jpg", id: 1 },
+  { src: "/mock2.jpg", id: 2 },
+  { src: "/mock3.jpg", id: 3 },
+];
+
+const options = ["Chat", "Chien", "Oiseau", "Voiture", "Fleur"];
+const correctAnswers = ["Chat", "Chien", "Oiseau"];
+
+export default function App() {
+  const [current, setCurrent] = useState(0);
+  const [selections, setSelections] = useState(Array(mockImages.length).fill(""));
+  const [page, setPage] = useState("home");
+  const [results, setResults] = useState([]);
+
+  const handleSelect = (e) => {
+    const newSelections = [...selections];
+    newSelections[current] = e.target.value;
+    setSelections(newSelections);
+  };
+
+  const handleValidate = () => {
+    const result = selections.map((choice, idx) =>
+      choice === correctAnswers[idx] ? "Correct" : "Incorrect"
+    );
+    setResults(result);
+    setPage("result");
+  };
+
+  const handleReset = () => {
+    setSelections(Array(mockImages.length).fill(""));
+    setCurrent(0);
+  };
+
+  const renderHome = () => (
+    <div className="flex flex-col items-center p-4">
+      <img src="/cover.jpg" alt="Cover" className="mb-4 w-full rounded-xl" />
+      <Button onClick={() => setPage("quiz")} className="text-xl">Commencer le Quiz</Button>
+    </div>
+  );
+
+  const renderQuiz = () => (
+    <div className="flex flex-col h-screen">
+      <div className="fixed top-0 w-full bg-white z-10 p-2 border-b">
+        <select
+          value={selections[current]}
+          onChange={handleSelect}
+          className="w-full p-2 border rounded"
+        >
+          <option value="">-- Sélectionnez une légende --</option>
+          {options.map((opt, idx) => (
+            <option key={idx} value={opt}>{opt}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="flex-1 flex items-center justify-center mt-20 mb-20">
+        <div className="relative">
+          <img src={mockImages[current].src} alt="Quiz" className="rounded-lg max-h-96" />
+          <span className="absolute top-2 left-2 bg-black text-white text-sm p-1 rounded">
+            {String(current + 1).padStart(2, '0')}
+          </span>
+          {selections[current] && (
+            <span className="absolute bottom-2 left-2 bg-white text-black text-sm p-1 rounded">
+              {selections[current]}
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="fixed bottom-0 w-full flex justify-between p-4 bg-white border-t">
+        <Button onClick={handleValidate}>Validation</Button>
+        <Button onClick={handleReset}>Reset</Button>
+        <div className="flex gap-2">
+          <Button
+            onClick={() => setCurrent((prev) => (prev > 0 ? prev - 1 : prev))}
+            variant="outline"
+          >
+            <ChevronLeft />
+          </Button>
+          <Button
+            onClick={() => setCurrent((prev) => (prev < mockImages.length - 1 ? prev + 1 : prev))}
+            variant="outline"
+          >
+            <ChevronRight />
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderResults = () => (
+    <div className="flex flex-col h-screen">
+      <div className="fixed top-0 w-full bg-white z-10 p-4 border-b text-center text-xl font-semibold">
+        Consultation des Résultats
+      </div>
+
+      <div className="flex-1 overflow-auto mt-20 mb-20 p-4">
+        {results.map((res, idx) => (
+          <Card key={idx} className="mb-2">
+            <CardContent className="p-2 text-sm">
+              Image {String(idx + 1).padStart(2, '0')} : {selections[idx]} — {res}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <div className="fixed bottom-0 w-full flex justify-between p-4 bg-white border-t">
+        <Button onClick={() => setPage("quiz")}><ChevronLeft /></Button>
+        <Button onClick={() => setPage("home")}>MENU</Button>
+        <Button onClick={() => { setCurrent(0); handleReset(); setPage("quiz"); }}><ChevronRight /></Button>
+      </div>
+    </div>
+  );
+
+  return page === "home"
+    ? renderHome()
+    : page === "quiz"
+    ? renderQuiz()
+    : renderResults();
+}
+'''
+with open(os.path.join(src_dir, "App.jsx"), "w") as f:
+    f.write(app_code)
+
+# Create a basic index.html
+index_html = '''<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz de Classification</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="./src/App.jsx"></script>
+</body>
+</html>
+'''
+with open(os.path.join(project_root, "index.html"), "w") as f:
+    f.write(index_html)
+
+# Create a zip archive of the entire project
+zip_path = "/mnt/data/quiz_image_classification.zip"
+shutil.make_archive(zip_path.replace(".zip", ""), 'zip', project_root)
+
+zip_path
+```
 
