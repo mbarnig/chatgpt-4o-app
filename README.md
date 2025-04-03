@@ -211,4 +211,23 @@ Souhaites-tu que je t’aide à :
 
 Tu peux aussi me montrer un exemple des images finales si tu veux peaufiner encore plus le rendu.
 ````
+J'ai demandé la création d'une archive .zip
+```markdown
+🎉 L’archive .zip de ton application web est prête !
+
+👉 Télécharger l'application ici
+
+Elle contient :
+
+    Un index.html de démarrage.
+
+    Le code React dans src/App.jsx.
+
+    Des images mock (mock1.jpg, mock2.jpg, mock3.jpg, cover.jpg) dans le dossier public/.
+
+Tu peux la décompresser et l’ouvrir localement ou l’intégrer dans un projet React/Vite pour le développement complet.
+
+Tu veux aussi un script build ou un package.json pour la rendre exécutable directement en local avec React ? ​
+​```
+
 
