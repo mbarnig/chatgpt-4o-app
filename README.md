@@ -47,7 +47,8 @@ Error:   Failed to scan for dependencies from entries:
     src/App.jsx:112:40:
       112 │         <button onClick={() => setPage(\"quiz\")}>&lt;</button>
  ```
- 
+ J'ai supprimé les "backshlashes" dans le code et ensuite l'application a été compilée correctement.
+ Toutefois, comme dans le cas de la branche CDN, la navigation des images avec les flèches ne fonctionne pas.
 
 
 # React + Vite
