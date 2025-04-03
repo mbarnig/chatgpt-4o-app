@@ -36,6 +36,7 @@ Parfait, tu avances bien ! L’erreur est tout à fait normale : ces modules s
 
 Je vais te donner une version de App.jsx plus simple, sans @/components/... ni lucide-react, pour que ça fonctionne immédiatement dans Vite.
 J'ai copié le nouveau fichier dans la branche RECTIF du présent repositoire.
+Pour compiler la nouvelle version, j'ai cloné la branche RECTIF dans un nouveau dossier avec la commande `git clone -b RECTIF 
   
 
 
