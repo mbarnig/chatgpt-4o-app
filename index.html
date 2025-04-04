@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz de Classification</title>
+  <style>
+body { margin: 0; font-family: sans-serif; }
+select, button { font-size: 1rem; padding: 0.5rem; }
+img { max-width: 100%; height: auto; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script type="module">
+const mockImages=[{src:"mock1.jpg",id:1},{src:"mock2.jpg",id:2},{src:"mock3.jpg",id:3}],
+options=["Chat","Chien","Oiseau","Voiture","Fleur"],
+correctAnswers=["Chat","Chien","Oiseau"];
+
+function App(){const[e,t]=React.useState(0),[n,a]=React.useState(Array(mockImages.length).fill("")),[r,s]=React.useState("home"),[l,c]=React.useState([]);
+const o=e=>{const r=[...n];r[e]=e.target.value,a(r)},
+i=()=>{const e=n.map((e,t)=>e===correctAnswers[t]?"Correct":"Incorrect");c(e),s("result")},
+u=()=>{a(Array(mockImages.length).fill("")),t(0)};
+const d="fixed",x="100%",b="1rem",h="center",m="absolute";
+const renderHome=()=>React.createElement("div",{style:{padding:"2rem",textAlign:h}},
+React.createElement("img",{src:"cover.jpg",alt:"Cover",style:{maxWidth:x,borderRadius:"1rem"}}),
+React.createElement("button",{onClick:()=>s("quiz"),style:{marginTop:b,padding:b}},"Commencer le Quiz"));
+
+const renderQuiz=()=>React.createElement("div",{style:{padding:"1rem"}},
+React.createElement("div",{style:{position:d,top:0,width:x,backgroundColor:"#fff",padding:b}},
+React.createElement("select",{value:n[e],onChange:o,style:{width:x}},
+React.createElement("option",{value:""},"-- Sélectionnez une légende --"),
+options.map((t,n)=>React.createElement("option",{key:n,value:t},t)))),
+React.createElement("div",{style:{marginTop:"5rem",textAlign:h}},
+React.createElement("div",{style:{position:"relative",display:"inline-block"}},
+React.createElement("img",{src:mockImages[e].src,alt:"Quiz",style:{maxHeight:"400px",borderRadius:"1rem"}}),
+React.createElement("span",{style:{position:m,top:"10px",left:"10px",background:"#000",color:"#fff",padding:"0.3rem",borderRadius:"0.3rem"}},String(e+1).padStart(2,"0")),
+n[e]&&React.createElement("span",{style:{position:m,bottom:"10px",left:"10px",background:"#fff",color:"#000",padding:"0.3rem",borderRadius:"0.3rem"}},n[e]))),
+React.createElement("div",{style:{position:d,bottom:0,width:x,display:"flex",justifyContent:"space-between",backgroundColor:"#fff",padding:b}},
+React.createElement("button",{onClick:i},"Validation"),
+React.createElement("div",null,
+React.createElement("button",{onClick:()=>t(e>0?e-1:0),disabled:e===0,style:{marginRight:"0.5rem"}},"<"),
+React.createElement("button",{onClick:()=>t(e<mockImages.length-1?e+1:e),disabled:e===mockImages.length-1},">")),
+React.createElement("button",{onClick:u},"Reset")));
+
+const renderResults=()=>React.createElement("div",{style:{padding:"1rem"}},
+React.createElement("h2",{style:{position:d,top:0,width:x,backgroundColor:"#fff",padding:b,textAlign:h}},"Consultation des Résultats"),
+React.createElement("div",{style:{marginTop:"5rem"}},
+l.map((r,s)=>React.createElement("div",{key:s,style:{border:"1px solid #ccc",margin:"0.5rem 0",padding:"1rem",borderRadius:"0.5rem"}},
+`Image ${String(s+1).padStart(2,'0')} : ${n[s]} — ${r}`))),
+React.createElement("div",{style:{position:d,bottom:0,width:x,display:"flex",justifyContent:"space-between",backgroundColor:"#fff",padding:b}},
+React.createElement("button",{onClick:()=>s("quiz")},"<"),
+React.createElement("button",{onClick:()=>s("home")},"MENU"),
+React.createElement("button",{onClick:()=>{t(0),u(),s("quiz")}},">")));
+
+return"home"===r?renderHome():"quiz"===r?renderQuiz():renderResults()}
+ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App));
+</script>
+</body>
+</html>
