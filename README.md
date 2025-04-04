@@ -84,3 +84,9 @@ Pas de CDN
 Fichier HTML final assez gros
 
 Moins lisible que la version CDN ou modulaire
+
+
+
+
+
+
