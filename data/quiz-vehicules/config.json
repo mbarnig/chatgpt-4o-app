@@ -1,0 +1,19 @@
+{
+  "title": "V\u00e9hicules du Monde",
+  "options": [
+    "Voiture",
+    "Camion",
+    "Moto",
+    "V\u00e9lo"
+  ],
+  "images": [
+    {
+      "file": "voiture1.jpg",
+      "answer": "Voiture"
+    },
+    {
+      "file": "moto2.jpg",
+      "answer": "Moto"
+    }
+  ]
+}

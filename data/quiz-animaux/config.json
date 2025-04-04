@@ -1,0 +1,19 @@
+{
+  "title": "Classification des Animaux",
+  "options": [
+    "Chat",
+    "Chien",
+    "Oiseau",
+    "Poisson"
+  ],
+  "images": [
+    {
+      "file": "image1.jpg",
+      "answer": "Chat"
+    },
+    {
+      "file": "image2.jpg",
+      "answer": "Oiseau"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Éditeur de Quiz</title>
+  <style>
+    body { font-family: sans-serif; padding: 1rem; }
+    input, select, textarea, button { display: block; margin-bottom: 1rem; padding: 0.5rem; width: 100%; max-width: 600px; }
+    label { font-weight: bold; margin-top: 1rem; display: block; }
+    .image-entry { border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>🛠️ Éditeur de Quiz</h1>
+  <form id="quiz-form">
+    <label for="title">Titre du quiz</label>
+    <input type="text" id="title" placeholder="Ex: Quiz sur les animaux" required />
+
+    <label for="options">Options de légende (séparées par une virgule)</label>
+    <input type="text" id="options" placeholder="Chat, Chien, Oiseau" required />
+
+    <div id="images-container"></div>
+
+    <button type="button" onclick="addImageEntry()">Ajouter une image</button>
+    <button type="submit">📥 Générer le fichier config.json</button>
+  </form>
+
+  <h2>Résultat JSON</h2>
+  <textarea id="result" rows="20" readonly></textarea>
+
+  <script>
+    const imagesContainer = document.getElementById('images-container');
+    let imageCount = 0;
+
+    function addImageEntry() {
+      const div = document.createElement('div');
+      div.className = 'image-entry';
+      div.innerHTML = `
+        <label>Nom du fichier image</label>
+        <input type="text" name="filename" placeholder="image1.jpg" required />
+        <label>Réponse correcte</label>
+        <input type="text" name="answer" placeholder="Chat" required />
+      `;
+      imagesContainer.appendChild(div);
+      imageCount++;
+    }
+
+    document.getElementById('quiz-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const title = document.getElementById('title').value.trim();
+      const options = document.getElementById('options').value.split(',').map(o => o.trim());
+      const imageBlocks = imagesContainer.querySelectorAll('.image-entry');
+
+      const images = Array.from(imageBlocks).map(block => {
+        const filename = block.querySelector('[name="filename"]').value.trim();
+        const answer = block.querySelector('[name="answer"]').value.trim();
+        return { file: filename, answer };
+      });
+
+      const config = {
+        title,
+        options,
+        images
+      };
+
+      document.getElementById('result').value = JSON.stringify(config, null, 2);
+    });
+
+    // Initial one image
+    addImageEntry();
+  </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi Quiz</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; }
+    #app { padding: 1rem; padding-top: 60px; padding-bottom: 60px; }
+    header, footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      background: #fff;
+      padding: 1rem;
+      z-index: 10;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    header { top: 0; }
+    footer.quiz-footer { bottom: 0; display: flex; justify-content: space-around; }
+    footer.quiz-footer button { font-size: 1.2rem; padding: 0.5rem 1rem; }
+    .quiz-list {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .quiz-list img {
+      width: 64px;
+      height: auto;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .quiz-list a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+    }
+    .image-block { position: relative; text-align: center; }
+    .image-block img { width: 100%; max-height: 80vh; object-fit: contain; }
+    .image-index {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 0.3rem 0.5rem;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+    .image-caption {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 0.5rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      max-width: 90%;
+    }
+    select { width: 100%; padding: 1rem; margin-top: 0.5rem; font-size: 1rem; }
+    .arrow-btn { background: none; border: none; font-size: 2rem; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header>
+    <h2 id="quizTitle">Multi Quiz</h2>
+    <select id="captionSelect" onchange="updateAnswer(this.value)"></select>
+  </header>
+
+  <div id="app"></div>
+
+  <footer id="quizFooter" class="quiz-footer">
+    <button class="arrow-btn" onclick="prevImage()">⬅️</button>
+    <button class="arrow-btn" onclick="nextImage()">➡️</button>
+    <button style="font-size: 1.2rem; padding: 0.5rem 1rem;" onclick="validateQuiz()">Valider</button>
+    <button style="font-size: 1.2rem; padding: 0.5rem 1rem;" onclick="loadQuizList()">Retour</button>
+  </footer>
+
+  <script>
+    let currentQuiz = null;
+    let currentConfig = null;
+    let currentIndex = 0;
+    let userAnswers = [];
+
+    async function loadQuizList() {
+      const res = await fetch('data/quiz-list.json');
+      const quizzes = await res.json();
+      const app = document.getElementById('app');
+      document.getElementById('quizTitle').textContent = "Multi Quiz";
+      document.getElementById('captionSelect').style.display = 'none';
+      document.getElementById('quizFooter').style.display = 'none';
+      app.innerHTML = '<h2>Choisissez un quiz :</h2>';
+
+      quizzes.forEach(q => {
+        const div = document.createElement('div');
+        div.className = 'quiz-list';
+        div.innerHTML = `
+          <a href="#" onclick="loadQuiz('${q.id}')">
+            <img src="${q.cover}" alt="cover" />
+            <div>
+              <h3>${q.title}</h3>
+              <p>${q.description}</p>
+            </div>
+          </a>
+        `;
+        app.appendChild(div);
+      });
+    }
+
+    async function loadQuiz(quizId) {
+      currentQuiz = quizId;
+      const res = await fetch(`data/${quizId}/config.json`);
+      currentConfig = await res.json();
+      userAnswers = Array(currentConfig.images.length).fill("");
+      currentIndex = 0;
+      document.getElementById('quizFooter').style.display = 'flex';
+      renderQuiz();
+    }
+
+    function renderQuiz() {
+      const app = document.getElementById('app');
+      const imageData = currentConfig.images[currentIndex];
+      const imagePath = `data/${currentQuiz}/${imageData.file}`;
+      const selected = userAnswers[currentIndex];
+
+      document.getElementById('quizTitle').textContent = currentConfig.title;
+
+      let options = currentConfig.options.map(opt => `<option value="${opt}" ${opt === selected ? 'selected' : ''}>${opt}</option>`).join('');
+      document.getElementById('captionSelect').innerHTML = '<option value="">-- Sélectionnez une légende --</option>' + options;
+      document.getElementById('captionSelect').style.display = 'block';
+
+      app.innerHTML = `
+        <div class="image-block">
+          <img src="${imagePath}" alt="quiz-image">
+          <div class="image-index">Image ${currentIndex + 1}/${currentConfig.images.length}</div>
+          <div class="image-caption">${selected || '—'}</div>
+        </div>
+      `;
+    }
+
+    function updateAnswer(value) {
+      userAnswers[currentIndex] = value;
+      renderQuiz();
+    }
+
+    function prevImage() {
+      if (currentIndex > 0) currentIndex--;
+      renderQuiz();
+    }
+
+    function nextImage() {
+      if (currentIndex < currentConfig.images.length - 1) currentIndex++;
+      renderQuiz();
+    }
+
+    function validateQuiz() {
+      const results = currentConfig.images.map((img, i) => {
+        const isCorrect = img.answer === userAnswers[i];
+        return `Image ${i + 1} : ${userAnswers[i] || '—'} — ${isCorrect ? '✅ Correct' : '❌ Incorrect (Attendu: ' + img.answer + ')'}`;
+      }).join('<br>');
+
+      document.getElementById('app').innerHTML = `
+        <h2>Résultats pour "${currentConfig.title}"</h2>
+        <div>${results}</div>
+      `;
+      document.getElementById('captionSelect').style.display = 'block';
+      document.getElementById('quizFooter').style.display = 'flex';
+    }
+
+    loadQuizList();
+  </script>
+</body>
+</html>
