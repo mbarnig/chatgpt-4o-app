@@ -23,7 +23,9 @@ Footer fixe avec les boutons (Précédent, Suivant, Valider, Retour).
 Numéro de l'image en haut à gauche.
 Légende sélectionnée affichée en bas de l'image.
 Tu peux tester ce nouveau fichier sur mobile pour voir le rendu réactif. Si tu veux que je t’aide à intégrer des styles supplémentaires ou un comportement offline, je suis là !
-[index2.html]()
+[index2.html](https://github.com/mbarnig/chatgpt-4o-app/blob/PERF/index2.html)
+
+---------
 
 Vous avez dit :
 Il faut faire des corrections supplémentaires au fichier HTML :
