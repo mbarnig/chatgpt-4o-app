@@ -1,7 +1,9 @@
-# chatgpt-4o-app
+# chatgpt-4o-app   
 
 La présente branche PERF, basée sur la branche CDN, comprend un certain nombre de correction et d'ajustements du fichier `index.html` suite à mon dialogue suivant avec ChatGPT-4o. J'avais téléchargé le fichier `index.html` le plus récent comme référence :  
+
 ---------
+
 Canevas prière de modifier le fichier HTML téléchargé comme suit pour mieux s'adapter aux Smartphones :
 1. affichez la page de sélection du quiz sous forme de liste avec des images miniatures
 2. remplacer le bouton "commencer" par un lien dans l'image miniature
