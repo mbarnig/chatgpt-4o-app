@@ -216,3 +216,19 @@ Tu peux tester ça tranquillement – si c’est validé, on peut passer à l’
 [index14.html](https://github.com/mbarnig/chatgpt-4o-app/blob/PERF/index14.html)
 
 -----------
+
+prière de créer une application HTML/JS qui affiche le contenu suivant sur tous les écrans mobiles et fixes :
+* un header avec le titre "Header" sur fond rouge d'une hauteur de 10% de l'écran
+* un footer avec le titre "Footer" sur fond bleu d'une hauteur de 10% de l'écran
+* un espace entre Header et Footer pour afficher une image téléchargée d'une façon centrée avec une marge de tous les côtés d'au moins 5% de l'écran
+
+Voici une application HTML/JS simple qui respecte tes consignes :
+
+    Un header rouge avec le titre "Header", hauteur 10%.
+
+    Un footer bleu avec "Footer", hauteur 10%.
+
+    Un espace central (80% de la hauteur) contenant un champ de téléchargement et une image affichée de façon centrée avec une marge de 5% sur tous les côtés.
+
+Tu peux ouvrir le fichier dans n'importe quel navigateur pour tester ! Si tu veux ajouter des animations, un meilleur style, ou la gestion de plusieurs images, je peux t’aider aussi.
+[index-js.html](https://github.com/mbarnig/chatgpt-4o-app/blob/PERF/index-js.html)
