@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Viewer App</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    a {
+      cursor: pointer;
+    }
+
+    .header, .footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5em;
+    }
+
+    .header {
+      flex-direction: column;
+      background-color: #018558;
+      height: 20dvh;    
+    }
+
+    .header h2 {
+      margin: 0;
+    }
+
+    .footer {
+      background-color: #bde902;
+      height: 15dvh;   
+      gap: 1rem;
+    }
+
+    .main {
+      background-color: #fef031;
+      height: 65dvh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5dvh 5dvw;
+      box-sizing: border-box;
+    }
+
+    .main img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .btn, .custom-select {
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+
+    .custom-select {
+      position: relative;
+      background-color: white;
+      color: black;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding-right: 2rem;
+    }
+
+    .custom-select-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .custom-select-wrapper::after {
+      content: '\25BC'; /* down arrow */
+      font-size: 0.8rem;
+      color: black;
+      position: absolute;
+      right: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    @media (max-width: 600px) {
+      .header, .footer {
+        font-size: 0.75em;
+      }
+
+      .btn, .custom-select {
+        font-size: 0.6rem;
+        padding: 0.25rem 0.5rem;
+      }
+
+      .custom-select-wrapper::after {
+        font-size: 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>Multi Quiz Pionniers</h2>
+    <h3>Choisissez un quiz :</h3>
+    </div>
+  </div>
+  <div class="main">
+     <a href="#" onclick="validateQuiz()">
+       <img src="https://www.web3.lu/quiz/data/quiz-animaux/cover.jpg" alt="cover" />
+       <div>
+         <h3>Classification des Animaux</h3>
+         <p>Classifie les images selon l'espèce.</p>
+       </div>
+     </a>
+     <a href="#" onclick="validateQuiz()">
+       <img src="https://www.web3.lu/quiz/data/quiz-animaux/cover.jpg" alt="cover" />
+       <div>
+         <h3>Véhicules du Monde</h3>
+         <p>Identifie les types de véhicules.</p>
+       </div>
+     </a>
+    <a href="#" onclick="validateQuiz()">
+       <img src="https://www.web3.lu/quiz/data/quiz-animaux/cover.jpg" alt="cover" />
+       <div>
+         <h3>Classification des Animaux</h3>
+         <p>Classifie les images selon l'espèce.</p>
+       </div>
+     </a>
+     <a href="#" onclick="validateQuiz()">
+       <img src="https://www.web3.lu/quiz/data/quiz-animaux/cover.jpg" alt="cover" />
+       <div>
+         <h3>Véhicules du Monde</h3>
+         <p>Identifie les types de véhicules.</p>
+       </div>
+     </a>  
+     <a href="#" onclick="validateQuiz()">
+       <img src="https://www.web3.lu/quiz/data/quiz-animaux/cover.jpg" alt="cover" />
+       <div>
+         <h3>Classification des Animaux</h3>
+         <p>Classifie les images selon l'espèce.</p>
+       </div>
+     </a>
+     <a href="#" onclick="validateQuiz()">
+       <img src="https://www.web3.lu/quiz/data/quiz-animaux/cover.jpg" alt="cover" />
+       <div>
+         <h3>Véhicules du Monde</h3>
+         <p>Identifie les types de véhicules.</p>
+       </div>
+     </a>        
+  </div>
+
+  <div class="footer">
+    <button class="btn" onclick="prevImage()">⬅️</button>
+    <button class="btn" onclick="validateQuiz()">Liste des rubriques de quiz</button>
+    <button class="btn" onclick="nextImage()">➡️</button>  
+  </div>
+  <script>
+    function prevImage() {}
+    function nextImage() {} 
+    function validateQuiz() {}
+    function loadQuizList() {}
+  </script>
+</body>
+</html>
