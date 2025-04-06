@@ -51,7 +51,7 @@
       object-fit: contain;
     }
 
-    .btn, select {
+    .btn, .custom-select {
       font-size: 1.2rem;
       padding: 0.5rem 1rem;
       border: none;
@@ -59,10 +59,30 @@
       cursor: pointer;
     }
 
-    select {
-      appearance: none;
+    .custom-select {
+      position: relative;
       background-color: white;
       color: black;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding-right: 2rem;
+    }
+
+    .custom-select-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .custom-select-wrapper::after {
+      content: '\25BC'; /* down arrow */
+      font-size: 0.8rem;
+      color: black;
+      position: absolute;
+      right: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
     }
   </style>
 </head>
@@ -70,12 +90,14 @@
   <div class="header">
     <h2>Header</h2>
     <label for="cars">Choose a car:</label>
-    <select name="cars" id="cars" class="btn">
-      <option value="volvo">Volvo, Volovo, Volvolo, Volvolvo, Volvovovovol, Volvolvolvolvol</option>
-      <option value="saab">Saab</option>
-      <option value="mercedes">Mercedes</option>
-      <option value="audi">Audi</option>
-    </select> 
+    <div class="custom-select-wrapper">
+      <select name="cars" id="cars" class="custom-select">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select> 
+    </div>
   </div>
   <div class="main">
     <img src="https://www.web3.lu/myquiz/data/quiz-styles/cover.jpg" alt="cover" />
