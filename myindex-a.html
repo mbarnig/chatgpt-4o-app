@@ -57,6 +57,13 @@
       object-fit: contain;
     }
 
+    .quiz-list img {
+      width: 64px;
+      height: auto;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+      
     .btn, .custom-select {
       font-size: 1.2rem;
       padding: 0.5rem 1rem;
@@ -114,7 +121,7 @@
     <h3>Choisissez un quiz :</h3>
     </div>
   </div>
-  <div class="main">
+  <div class="quiz-list">
      <a href="#" onclick="validateQuiz()">
        <img src="https://www.web3.lu/quiz/data/quiz-animaux/cover.jpg" alt="cover" />
        <div>
