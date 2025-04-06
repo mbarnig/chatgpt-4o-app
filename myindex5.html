@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Viewer App</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    .header, .footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5em;
+    }
+
+    .header {
+      flex-direction: column;
+      background-color: red;
+      height: 20dvh;    
+    }
+
+    .footer {
+      background-color: blue;
+      height: 15dvh;   
+    }
+
+    .main {
+      height: 65dvh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5dvh 5dvw;
+      box-sizing: border-box;
+    }
+
+    .main img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>Header</h2>
+    <label for "cars">Choose a car:</label>
+    <select name="cars" id="cars">
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="mercedes">Mercedes</option>
+      <option value="audi">Audi</option>
+    </select> 
+  </div>
+  <div class="main">
+    <img src="https://www.web3.lu/myquiz/data/quiz-styles/cover.jpg" alt="cover" />
+  </div>
+  <div class="footer">
+    <button class="arrow-btn" onclick="prevImage()">⬅️</button>
+    <button style="font-size: 1.2rem; padding: 0.5rem 1rem;" onclick="validateQuiz()">Valider</button>
+    <button style="font-size: 1.2rem; padding: 0.5rem 1rem;" onclick="loadQuizList()">Menu</button>
+    <button class="arrow-btn" onclick="nextImage()">➡️</button>  
+  </div>
+  <script>
+    function prevImage() {}
+    function nextImage() {} 
+    function validateQuiz() {}
+    function loadQuizList() {}
+  </script>
+</body>
+</html>
